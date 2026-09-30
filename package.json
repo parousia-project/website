@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "description": "The website and documentation for Parousia, a Rich Presence platform for Discord and beyond.",
-  "homepage": "https://parousia.js.org",
+  "homepage": "https://parousia.abadima.dev",
   "license": "Apache-2.0",
   "repository": "github:parousia-project/website",
   "type": "module",

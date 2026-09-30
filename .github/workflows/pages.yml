@@ -1,6 +1,6 @@
 name: Deploy to GitHub Pages
 
-# Serves parousia.js.org. With a custom domain, GitHub ignores the CNAME file
+# Serves parousia.abadima.dev. With a custom domain, GitHub ignores the CNAME file
 # for Actions deployments: the domain is set under Settings > Pages, and
 # "Source" there must be "GitHub Actions".
 on:

@@ -10,7 +10,7 @@ interface Props {
 
 const {
   title,
-  description = "Your Rich Presence, present on Discord and beyond.",
+  description = "Your Rich Presence on Discord and beyond.",
 } = Astro.props;
 const fullTitle = title ? `${title} · Parousia` : "Parousia";
 const path = Astro.url.pathname.replace(/\/?$/, "/");
