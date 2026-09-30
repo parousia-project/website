@@ -1,0 +1,50 @@
+---
+import { BASE } from "../../base";
+import { DOCS } from "../../docs";
+import Docs from "../../layouts/Docs.astro";
+
+const frontmatter = {
+  title: "Documentation",
+  description: "How Parousia works, how to install and configure it, and how to write Activities.",
+};
+---
+
+<Docs frontmatter={frontmatter}>
+  <p>
+    Parousia shows what you are doing in your browser on Discord. It has four parts, and each one
+    has a single job:
+  </p>
+  <ul>
+    <li>
+      <strong>The browser extension</strong> (or a userscript) watches your tabs, finds the
+      Activity for the page, and sends what it produced to Desktop.
+    </li>
+    <li>
+      <strong>Parousia Desktop</strong> is a small native program. It accepts connections from
+      extensions it recognizes, on your computer only, and passes presence on.
+    </li>
+    <li>
+      <strong>A platform adapter</strong> inside Desktop turns presence into what a platform
+      expects. Discord is the first; Fluxer and Stoat are planned.
+    </li>
+    <li>
+      <strong>Activities</strong> describe how to read a site: which pages it covers and what to
+      say about them. They come from PreMiD and from Parousia's own repository.
+    </li>
+  </ul>
+  <p>
+    Without Desktop, the extension can still reach Discord through the app that
+    Discord-RPC-Extension installs; see <a href={`${BASE}docs/compatibility/`}>Compatibility</a>.
+  </p>
+
+  <h2>Pages</h2>
+  <ul>
+    {
+      DOCS.filter((doc) => doc.slug).map((doc) => (
+        <li>
+          <a href={`${BASE}docs/${doc.slug}`}>{doc.title}</a>: {doc.summary}
+        </li>
+      ))
+    }
+  </ul>
+</Docs>

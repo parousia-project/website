@@ -1,0 +1,31 @@
+{
+  "name": "parousia-website",
+  "version": "0.0.1",
+  "private": true,
+  "description": "The website and documentation for Parousia, a Rich Presence platform for Discord and beyond.",
+  "homepage": "https://parousia.js.org",
+  "license": "Apache-2.0",
+  "repository": "github:parousia-project/website",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro sync && tsc --noEmit",
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "test": "bun test",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^9.0.1",
+    "astro": "^7.3.5",
+    "svelte": "^5.57.1"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
+    "typescript": "^7.0.2"
+  }
+}

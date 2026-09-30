@@ -1,0 +1,94 @@
+---
+import { BASE } from "../base";
+import Page from "../layouts/Page.astro";
+import { ACTIVITIES_REPO } from "../site";
+
+const example = `import type { Activity, NativeActivity, Page } from "parousia";
+
+function detect({ url, title }: Page): Activity {
+  return {
+    id: "example-docs",
+    name: "Example Docs",
+    details: url.pathname.startsWith("/guide") ? "Reading the guide" : "Browsing the docs",
+    state: title.slice(0, 64),
+    url: \`\${url.origin}\${url.pathname}\`,
+    buttons: [{ label: "Open the docs", url: \`\${url.origin}/\` }],
+  };
+}
+
+const activity: NativeActivity = { detect };
+export default activity;`;
+---
+
+<Page>
+  <section class="wrap hero">
+    <h1>Your Rich Presence, present on Discord and beyond.</h1>
+    <p class="lead">
+      Parousia notices what you are doing in your browser and shows it on Discord, through a small
+      native app and an extension that asks for as little as it can. Sites come from PreMiD's
+      Activities, which run unchanged, and from Activities anyone can write in TypeScript.
+    </p>
+    <div class="actions">
+      <a class="button primary" href={`${BASE}download/`}>Download</a>
+      <a class="button" href={`${BASE}docs/`}>Read the docs</a>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="pieces">
+    <h2 id="pieces">The pieces</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Browser extension</h3>
+        <p>
+          Chrome, Edge, and Firefox, plus a userscript. It matches the tab against an Activity and
+          sends the result to Desktop. It needs no access to your pages unless you turn on an Activity
+          that reads them.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Parousia Desktop</h3>
+        <p>
+          One static program of about a megabyte for Windows and Linux. It listens on your own
+          computer only and hands presence to Discord.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Activities</h3>
+        <p>
+          About 1,400 from PreMiD, and Parousia's own in a repository anyone can send a pull request
+          to. Turn on the ones you want.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Private by default</h3>
+        <p>
+          Only what an Activity chooses to show leaves your browser, sites are read only where you say
+          so, and Desktop refuses any extension it does not recognize.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="developers">
+    <h2 id="developers">For developers</h2>
+    <div class="split">
+      <div>
+        <p>
+          A native Activity is a folder with a <code>metadata.json</code> and one function. It gets
+          the page's URL and title and returns what to show. It cannot run in the page, make
+          requests, or store anything, so it needs no extra permission.
+        </p>
+        <p>
+          The Activities repository has the type definitions, a validator, and test helpers, and
+          <code>bun run check</code> runs all of them. Try an Activity in a real extension build with
+          one environment variable.
+        </p>
+        <div class="actions">
+          <a class="button" href={`${BASE}docs/activities/`}>Write an Activity</a>
+          <a class="button" href={ACTIVITIES_REPO}>Activities repository</a>
+        </div>
+      </div>
+      <pre><code>{example}</code></pre>
+    </div>
+  </section>
+</Page>

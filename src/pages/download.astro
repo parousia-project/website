@@ -1,0 +1,84 @@
+---
+import DownloadPicker from "../components/DownloadPicker.svelte";
+import { BASE } from "../base";
+import Page from "../layouts/Page.astro";
+import { DESKTOP_BUILDS, EXTENSIONS, RELEASES, REPO_SLUG, USERSCRIPT, downloadUrl } from "../site";
+
+const builds = DESKTOP_BUILDS.map((build) => ({ ...build, url: downloadUrl(build.file) }));
+---
+
+<Page
+  title="Download"
+  description="Parousia Desktop for Windows and Linux, the browser extension for Chromium and Firefox, and the userscript."
+>
+  <div class="wrap section">
+    <div class="prose">
+    <h1>Download</h1>
+    <p>
+      You need Parousia Desktop and one way to reach it from a browser: the extension, or the
+      userscript. Every file below is the newest <a href={RELEASES}>release</a>.
+      <a href={`${BASE}docs/installation/`}>Installation</a> walks through the first run.
+    </p>
+
+    <h2>Parousia Desktop</h2>
+    <DownloadPicker client:load builds={builds} />
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>System</th><th>File</th></tr></thead>
+        <tbody>
+          {
+            builds.map((build) => (
+              <tr>
+                <td>{build.label}</td>
+                <td><a href={build.url}>{build.file}</a></td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Each is a single file with nothing to install. The Linux builds are static, so they run on any
+      distribution; make the file executable first (<code>chmod +x</code>). There is no macOS build
+      yet.
+    </p>
+
+    <h2>Browser extension</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Browser</th><th>File</th></tr></thead>
+        <tbody>
+          {
+            EXTENSIONS.map((extension) => (
+              <tr>
+                <td>{extension.label}</td>
+                <td><a href={downloadUrl(extension.file)}>{extension.file}</a></td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Store listings are not up yet, so for now the extension loads from the zip; see
+      <a href={`${BASE}docs/installation/#the-browser-extension`}>Installation</a>.
+    </p>
+
+    <h2>Userscript</h2>
+    <p>
+      For browsers where the extension will not go, and for a script manager you already use:
+      <a href={downloadUrl(USERSCRIPT.file)}>{USERSCRIPT.file}</a> ({USERSCRIPT.label}). Desktop
+      accepts a userscript only after you turn on <em>Allow userscripts</em>, because that lets any
+      web page reach it.
+    </p>
+
+    <h2>Check what you downloaded</h2>
+    <p>
+      Every release has a <code>SHA256SUMS</code> file. Put it next to your downloads and run:
+    </p>
+    <pre><code>sha256sum --ignore-missing -c SHA256SUMS</code></pre>
+    <p>On Windows, <code>(Get-FileHash file).Hash</code> in PowerShell gives the value to compare. Each file also has a build provenance attestation, which shows the workflow run that built it:</p>
+    <pre><code>{`gh attestation verify parousia-desktop-linux-x86_64 --repo ${REPO_SLUG}`}</code></pre>
+    </div>
+  </div>
+</Page>

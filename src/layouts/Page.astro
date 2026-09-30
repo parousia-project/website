@@ -1,0 +1,79 @@
+---
+import "../styles/site.css";
+import { BASE } from "../base";
+import { ACTIVITIES_REPO, REPO, WEBSITE_REPO } from "../site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Your Rich Presence, present on Discord and beyond.",
+} = Astro.props;
+const fullTitle = title ? `${title} · Parousia` : "Parousia";
+const path = Astro.url.pathname.replace(/\/?$/, "/");
+const canonical = Astro.site ? new URL(path, Astro.site).href : undefined;
+const image = Astro.site ? new URL(`${BASE}pwa/icons/icon-512.png`, Astro.site).href : undefined;
+
+const nav = [
+  { href: `${BASE}download/`, label: "Download" },
+  { href: `${BASE}docs/`, label: "Docs" },
+  { href: REPO, label: "GitHub" },
+];
+const current = (href: string): "page" | undefined =>
+  path === href || (href !== BASE && href.startsWith(BASE) && path.startsWith(href))
+    ? "page"
+    : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#2b2322" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/svg+xml" href={`${BASE}favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${BASE}pwa/icons/apple-touch-icon.png`} />
+    <meta property="og:site_name" content="Parousia" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href={BASE}>
+          <img src={`${BASE}favicon.svg`} width="24" height="24" alt="" />
+          PAROUSIA
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          {nav.map((item) => <a href={item.href} aria-current={current(item.href)}>{item.label}</a>)}
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>Parousia is open source.</span>
+        <nav aria-label="Project">
+          <a href={`${BASE}docs/privacy/`}>Privacy</a>
+          <a href={REPO}>Parousia</a>
+          <a href={ACTIVITIES_REPO}>Activities</a>
+          <a href={WEBSITE_REPO}>This site</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

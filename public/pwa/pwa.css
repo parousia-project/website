@@ -1,0 +1,178 @@
+/* Tokens mirror browser/src/shared/theme.css, so the PWA matches the extension. */
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/poppins-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/poppins-600.woff2") format("woff2");
+}
+
+:root {
+  color-scheme: dark;
+
+  --cocoa: #906861;
+  --espresso: #2b2322;
+  --linen: #fbf9f8;
+  --almond: #e5ddd9;
+  --sage: #6b7b6e;
+
+  --accent-text: #b59994;
+  --accent-soft: rgb(144 104 97 / 16%);
+  --accent-line: rgb(144 104 97 / 38%);
+
+  --bg: var(--espresso);
+  --surface: #322928;
+  --border: rgb(229 221 217 / 10%);
+
+  --text: var(--linen);
+  --text-muted: rgb(229 221 217 / 78%);
+  --good: var(--sage);
+  --idle: rgb(229 221 217 / 35%);
+
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    "Poppins",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+p {
+  margin: 0;
+}
+
+.page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mark {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.wordmark {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.content > * {
+  animation: rise-in 200ms ease-out;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content > * {
+    animation: none;
+  }
+}
+
+.presence-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 420px;
+  text-align: center;
+}
+
+.presence-empty-visual {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent-line);
+}
+
+.presence-empty-title {
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.presence-empty-subtitle {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--idle);
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 16px;
+  }
+
+  .content {
+    padding: 24px 16px;
+  }
+}

@@ -1,0 +1,13 @@
+---
+import { BASE } from "../base";
+import Page from "../layouts/Page.astro";
+---
+
+<Page title="Not found">
+  <div class="wrap section">
+    <div class="prose">
+    <h1>Not found</h1>
+    <p>That page does not exist. Try the <a href={BASE}>home page</a> or the <a href={`${BASE}docs/`}>docs</a>.</p>
+    </div>
+  </div>
+</Page>

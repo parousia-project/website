@@ -1,0 +1,55 @@
+---
+import { BASE } from "../../base";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#2b2322" />
+    <title>Parousia</title>
+    <meta name="description" content="Your Rich Presence, present on Discord and beyond." />
+    <link rel="manifest" href={`${BASE}pwa/manifest.webmanifest`} />
+    <link rel="icon" type="image/png" href={`${BASE}pwa/icons/icon-32.png`} />
+    <link rel="apple-touch-icon" href={`${BASE}pwa/icons/apple-touch-icon.png`} />
+    <link rel="stylesheet" href={`${BASE}pwa/pwa.css`} />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img
+          class="mark"
+          src={`${BASE}pwa/icons/icon-32.png`}
+          width="22"
+          height="22"
+          alt="Parousia"
+        />
+        <span class="wordmark" aria-hidden="true">PAROUSIA</span>
+      </header>
+      <main class="content" id="content">
+        <div class="presence-empty">
+          <div class="presence-empty-visual"></div>
+          <p class="presence-empty-title">No extension detected</p>
+          <p class="presence-empty-subtitle">
+            Install the Parousia browser extension to see your presence here.
+          </p>
+        </div>
+      </main>
+      <footer class="footer">
+        <span class="status-dot"></span>
+        <span>Standalone view</span>
+      </footer>
+    </div>
+    <script>
+      import { BASE } from "../../base";
+
+      // No bridge to the extension yet, so the page only ever says "no extension".
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register(`${BASE}pwa/sw.js`);
+        });
+      }
+    </script>
+  </body>
+</html>
