@@ -31,9 +31,9 @@ No code is downloaded after you install Parousia. Every Activity, native or PreM
 An Activity can still make requests of its own while it runs on a page you turned it on for:
 
 - **Native Activities** only get the page's address and title, and can't make requests.
-- **PreMiD's Activities** are PreMiD's code, included unchanged. Some ask their own site's API for details, the way the site's own scripts do. A few ask PreMiD's image service (`pd.premid.app`) for a cover image, sending the title or id they are showing. Turn off an Activity you don't want doing that. The list of what each one does is in its source in [PreMiD/Activities](https://github.com/PreMiD/Activities).
+- **PreMiD's Activities** are PreMiD's code, included unchanged. Some ask their own site's API for details, the way the site's own scripts do. About a dozen were written to ask PreMiD's image service (`pd.premid.app`) to shorten a long image address or host a picture. Parousia answers those requests itself, so nothing is sent to PreMiD, and a picture that would have been uploaded is left out. What each one does is in its source in [PreMiD/Activities](https://github.com/PreMiD/Activities).
 
-What Activities may read from pages is still limited by Settings, Privacy, but these requests are the Activity's code talking to its own service, so those settings can't hold them back.
+What Activities may read from pages is limited by Settings, Privacy, but a request to a site's own service is that Activity's code talking to a service you already use there, so those settings can't hold it back.
 
 ## What Desktop refuses
 

@@ -32,9 +32,9 @@ The download links go to `releases/latest/download/<file>` in the Parousia repos
 
 ## Deploying
 
-Pushes to `main` run `.github/workflows/pages.yml`, which builds with the site URL and base path GitHub Pages reports and deploys the result. In the repository settings, Pages must use "GitHub Actions" as its source and `parousia.abadima.dev` as its custom domain. GitHub ignores `public/CNAME` for Actions deployments, but the file stays so other tools that look for it (js.org's registry check, for one) find it.
+Pushes to `main` run `.github/workflows/pages.yml`, which builds with the site URL and base path GitHub Pages reports and deploys the result. In the repository settings, Pages must use "GitHub Actions" as its source and `parousia.abadima.dev` as its custom domain. GitHub ignores `public/CNAME` for Actions deployments, but the file stays as a record of the domain.
 
-`parousia.abadima.dev` also has to be registered with [js.org](https://github.com/js-org/js.org) (a pull request adding it to `cnames_active.js` that points at `parousia-project.github.io`) before it resolves.
+The domain is `parousia.abadima.dev`, so its DNS (wherever `abadima.dev` is managed) needs a `CNAME` record for `parousia` pointing at `parousia-project.github.io`. GitHub then checks the domain and issues the certificate; turn on "Enforce HTTPS" once it does.
 
 ## License
 
