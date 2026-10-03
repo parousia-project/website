@@ -2,7 +2,15 @@
 import DownloadPicker from "../components/DownloadPicker.svelte";
 import { BASE } from "../base";
 import Page from "../layouts/Page.astro";
-import { DESKTOP_BUILDS, EXTENSIONS, RELEASES, REPO_SLUG, USERSCRIPT, downloadUrl } from "../site";
+import {
+  DESKTOP_BUILDS,
+  EXTENSIONS,
+  FIREFOX_ADDON_URL,
+  RELEASES,
+  REPO_SLUG,
+  USERSCRIPT,
+  downloadUrl,
+} from "../site";
 
 const builds = DESKTOP_BUILDS.map((build) => ({ ...build, url: downloadUrl(build.file) }));
 ---
@@ -44,6 +52,12 @@ const builds = DESKTOP_BUILDS.map((build) => ({ ...build, url: downloadUrl(build
     </p>
 
     <h2>Browser extension</h2>
+    <p>
+      <strong>Firefox:</strong> install Parousia from
+      <a href={FIREFOX_ADDON_URL}>Firefox Add-ons</a>. <strong>Chrome, Edge, and other Chromium
+      browsers:</strong> the Chrome Web Store listing is in review, so for now load the zip below;
+      see <a href={`${BASE}docs/installation/#the-browser-extension`}>Installation</a>.
+    </p>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Browser</th><th>File</th></tr></thead>
@@ -60,8 +74,8 @@ const builds = DESKTOP_BUILDS.map((build) => ({ ...build, url: downloadUrl(build
       </table>
     </div>
     <p>
-      Store listings are not up yet, so for now the extension loads from the zip; see
-      <a href={`${BASE}docs/installation/#the-browser-extension`}>Installation</a>.
+      The Firefox zip is unsigned, so Firefox loads it only temporarily; the Add-ons listing is the
+      way to keep it.
     </p>
 
     <h2>Userscript</h2>

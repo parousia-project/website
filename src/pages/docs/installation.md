@@ -22,21 +22,23 @@ Only one copy runs per user. Starting it again shows a notification that it is a
 
 ## The browser extension
 
-Store listings are not up yet, so the extension installs from the zip on the [download page](../../download/).
+### Firefox
+
+Install Parousia from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/parousia/). Mozilla signs it, so Firefox keeps it.
+
+The zip on the [download page](../../download/) is unsigned. Firefox loads it only as a temporary add-on: open `about:debugging`, choose This Firefox, then Load Temporary Add-on, and pick `parousia-firefox.zip`. It lasts until Firefox closes. Firefox Developer Edition and Nightly can keep it: set `xpinstall.signatures.required` to `false` in `about:config`, then use Install Add-on From File in the add-ons page.
 
 ### Chrome, Edge, and other Chromium browsers
+
+The Chrome Web Store listing is in review, so until it is up the extension installs from the zip on the [download page](../../download/):
 
 1. Unzip `parousia-chromium.zip` somewhere it can stay.
 2. Open `chrome://extensions` (`edge://extensions` in Edge) and turn on Developer mode.
 3. Choose Load unpacked and pick the unzipped folder.
 
-### Firefox
-
-Firefox keeps only add-ons signed by Mozilla, so the zip loads as a temporary add-on: open `about:debugging`, choose This Firefox, then Load Temporary Add-on, and pick `parousia-firefox.zip`. It lasts until Firefox closes. Firefox Developer Edition and Nightly can keep it: set `xpinstall.signatures.required` to `false` in `about:config`, then use Install Add-on From File in the add-ons page.
-
 ### Allow the extension in Desktop
 
-Desktop only talks to extensions it recognizes, by their exact identity. Builds from the stores will be recognized without any step once they exist. Until then, allow yours once:
+Desktop only talks to extensions it recognizes, by their exact identity. The Chrome Web Store build will be recognized without any step once it is up. Firefox picks a new random identity for every install, so a Firefox install, from Add-ons or from the zip, and an unpacked Chromium build each need to be allowed once:
 
 - The extension's popup shows the exact command to run, for example `Parousia-Desktop allow chrome-extension://<id>`.
 - Or open the tray menu, Diagnostics, Refused, and choose Allow next to the extension.
