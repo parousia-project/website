@@ -30,7 +30,9 @@ The zip on the [download page](../../download/) is unsigned. Firefox loads it on
 
 ### Chrome, Edge, and other Chromium browsers
 
-The Chrome Web Store listing is in review, so until it is up the extension installs from the zip on the [download page](../../download/):
+Install Parousia from the [Chrome Web Store](https://chromewebstore.google.com/detail/parousia/achhedhokopfgfnigkfchklhbebbhebd). Edge and other Chromium browsers can install from it too. Desktop recognizes this build without any step.
+
+To load it by hand instead, use the zip on the [download page](../../download/):
 
 1. Unzip `parousia-chromium.zip` somewhere it can stay.
 2. Open `chrome://extensions` (`edge://extensions` in Edge) and turn on Developer mode.
@@ -38,7 +40,7 @@ The Chrome Web Store listing is in review, so until it is up the extension insta
 
 ### Allow the extension in Desktop
 
-Desktop only talks to extensions it recognizes, by their exact identity. The Chrome Web Store build will be recognized without any step once it is up. Firefox picks a new random identity for every install, so a Firefox install, from Add-ons or from the zip, and an unpacked Chromium build each need to be allowed once:
+Desktop only talks to extensions it recognizes, by their exact identity. The Chrome Web Store build is recognized without any step. Firefox picks a new random identity for every install, so a Firefox install, from Add-ons or from the zip, and an unpacked Chromium build each need to be allowed once:
 
 - The extension's popup shows the exact command to run, for example `Parousia-Desktop allow chrome-extension://<id>`.
 - Or open the tray menu, Diagnostics, Refused, and choose Allow next to the extension.

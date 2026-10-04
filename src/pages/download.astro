@@ -3,6 +3,7 @@ import DownloadPicker from "../components/DownloadPicker.svelte";
 import { BASE } from "../base";
 import Page from "../layouts/Page.astro";
 import {
+  CHROME_STORE_URL,
   DESKTOP_BUILDS,
   EXTENSIONS,
   FIREFOX_ADDON_URL,
@@ -55,8 +56,8 @@ const builds = DESKTOP_BUILDS.map((build) => ({ ...build, url: downloadUrl(build
     <p>
       <strong>Firefox:</strong> install Parousia from
       <a href={FIREFOX_ADDON_URL}>Firefox Add-ons</a>. <strong>Chrome, Edge, and other Chromium
-      browsers:</strong> the Chrome Web Store listing is in review, so for now load the zip below;
-      see <a href={`${BASE}docs/installation/#the-browser-extension`}>Installation</a>.
+      browsers:</strong> install it from the <a href={CHROME_STORE_URL}>Chrome Web Store</a>. The
+      zips below are for loading by hand; see <a href={`${BASE}docs/installation/#the-browser-extension`}>Installation</a>.
     </p>
     <div class="table-wrap">
       <table>

@@ -45,8 +45,10 @@ export const DESKTOP_BUILDS: readonly DesktopBuild[] = [
   },
 ];
 
-/** The approved Firefox listing. The Chrome Web Store listing is still in review, so it is not linked. */
+/** The approved store listings. */
 export const FIREFOX_ADDON_URL = "https://addons.mozilla.org/en-US/firefox/addon/parousia/";
+export const CHROME_STORE_URL =
+  "https://chromewebstore.google.com/detail/parousia/achhedhokopfgfnigkfchklhbebbhebd";
 
 export interface Package {
   label: string;

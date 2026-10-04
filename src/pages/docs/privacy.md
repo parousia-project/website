@@ -12,7 +12,7 @@ Parousia has no server, no account, and no analytics, so nothing about you is se
 - **Storage.** Only your own settings: Privacy, Platforms, language, which Activities are on with their settings, and the Default Activity.
 - **Page contents.** Nothing, until you turn on an Activity that reads pages. That asks your browser for that Activity's sites, one site at a time, from the same click. "All websites" has its own switch, off by default, and is never requested automatically. Taking access back stops what runs on that site at once.
 
-There are no host permissions and no content scripts at install. The extension's Content Security Policy lets it connect only to its own files, Parousia Desktop, and Discord-RPC-Extension's local app.
+There are no host permissions and no content scripts at install. The extension's Content Security Policy lets it connect only to its own files, Parousia Desktop, Discord-RPC-Extension's local app, and one address on GitHub.
 
 ## What leaves the browser
 
@@ -23,6 +23,10 @@ That text can come from the page: a video's title, a song's name, a game. Becaus
 Desktop passes it to Discord through Discord's local socket on your computer. Discord fetches any images itself, from the addresses the Activity gave. The dashboard loads Activity icons from each Activity's own site, without sending a referrer, and falls back to a letter.
 
 What Activities may read from a page (what is playing, thumbnails, creator icons) is one choice in Settings, Privacy, for all of them, and the Activity only gets what its declared kinds and your choices allow.
+
+## The update check
+
+Parousia Desktop and the extension have their own version numbers, so a newer extension next to an older Desktop is normal. When the two differ and the popup or dashboard is about to say "update Desktop", the extension first asks GitHub's latest release which Desktop version it contains, and says it only if yours is older. That is one request to `api.github.com`, at most once a day, with no cookies, referrer, or identifier, and nothing about you or the pages you visit. GitHub sees your IP address and browser, as for any request. If it can't be made, nothing is shown.
 
 ## What Activities request
 
