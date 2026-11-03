@@ -14,86 +14,105 @@ import {
 } from "../site";
 
 const builds = DESKTOP_BUILDS.map((build) => ({ ...build, url: downloadUrl(build.file) }));
+const install = `${BASE}docs/installation/`;
 ---
 
 <Page
-  title="Download"
-  description="Parousia Desktop for Windows and Linux, the browser extension for Chromium and Firefox, and the userscript."
+  title="Install"
+  description="Add Parousia from the Chrome Web Store or Firefox Add-ons, then download Parousia Desktop for Windows or Linux."
 >
   <div class="wrap section">
     <div class="prose">
-    <h1>Download</h1>
-    <p>
-      You need Parousia Desktop and one way to reach it from a browser: the extension, or the
-      userscript. Every file below is the newest <a href={RELEASES}>release</a>.
-      <a href={`${BASE}docs/installation/`}>Installation</a> walks through the first run.
-    </p>
+      <h1>Install Parousia</h1>
+      <p>
+        Parousia has two parts: the browser extension and Parousia Desktop. Add the extension from
+        your browser's store, then download Desktop.
+        <a href={install}>Installation</a> covers the first run.
+      </p>
 
-    <h2>Parousia Desktop</h2>
-    <DownloadPicker client:load builds={builds} />
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>System</th><th>File</th></tr></thead>
-        <tbody>
-          {
-            builds.map((build) => (
-              <tr>
-                <td>{build.label}</td>
-                <td><a href={build.url}>{build.file}</a></td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-    </div>
-    <p>
-      Each is a single file with nothing to install. The Linux builds are static, so they run on any
-      distribution; make the file executable first (<code>chmod +x</code>). There is no macOS build
-      yet.
-    </p>
+      <h2 id="extension">1. Add the extension</h2>
+      <div class="actions">
+        <a class="button primary" href={CHROME_STORE_URL}>Chrome Web Store</a>
+        <a class="button primary" href={FIREFOX_ADDON_URL}>Firefox Add-ons</a>
+      </div>
+      <p class="hint">
+        Edge and other Chromium browsers install from the Chrome Web Store too. The stores keep the
+        extension up to date. No store? <a href="#by-hand">Install by hand</a>.
+      </p>
 
-    <h2>Browser extension</h2>
-    <p>
-      <strong>Firefox:</strong> install Parousia from
-      <a href={FIREFOX_ADDON_URL}>Firefox Add-ons</a>. <strong>Chrome, Edge, and other Chromium
-      browsers:</strong> install it from the <a href={CHROME_STORE_URL}>Chrome Web Store</a>. The
-      zips below are for loading by hand; see <a href={`${BASE}docs/installation/#the-browser-extension`}>Installation</a>.
-    </p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Browser</th><th>File</th></tr></thead>
-        <tbody>
-          {
-            EXTENSIONS.map((extension) => (
-              <tr>
-                <td>{extension.label}</td>
-                <td><a href={downloadUrl(extension.file)}>{extension.file}</a></td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-    </div>
-    <p>
-      The Firefox zip is unsigned, so Firefox loads it only temporarily; the Add-ons listing is the
-      way to keep it.
-    </p>
+      <h2 id="desktop">2. Download Parousia Desktop</h2>
+      <DownloadPicker client:load builds={builds} />
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>System</th><th>File</th></tr></thead>
+          <tbody>
+            {
+              builds.map((build) => (
+                <tr>
+                  <td>{build.label}</td>
+                  <td><a href={build.url}>{build.file}</a></td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Each is a single file with nothing to install. The Linux builds are static and run on any
+        distribution; make the file executable first (<code>chmod +x</code>). There is no macOS
+        build yet. Desktop also needs the Discord desktop app running on the same computer.
+      </p>
+      <p>
+        Then open the extension's popup. Firefox installs need one extra step, allowing the
+        extension in Desktop, which <a href={`${install}#allow-the-extension-in-desktop`}>Installation</a> shows.
+      </p>
 
-    <h2>Userscript</h2>
-    <p>
-      For browsers where the extension will not go, and for a script manager you already use:
-      <a href={downloadUrl(USERSCRIPT.file)}>{USERSCRIPT.file}</a> ({USERSCRIPT.label}). Desktop
-      accepts a userscript only after you turn on <em>Allow userscripts</em>, because that lets any
-      web page reach it.
-    </p>
+      <h2 id="by-hand">Install by hand</h2>
+      <p>
+        For when a store is not an option. These come from the newest <a href={RELEASES}>release</a>.
+      </p>
 
-    <h2>Check what you downloaded</h2>
-    <p>
-      Every release has a <code>SHA256SUMS</code> file. Put it next to your downloads and run:
-    </p>
-    <pre><code>sha256sum --ignore-missing -c SHA256SUMS</code></pre>
-    <p>On Windows, <code>(Get-FileHash file).Hash</code> in PowerShell gives the value to compare. Each file also has a build provenance attestation, which shows the workflow run that built it:</p>
-    <pre><code>{`gh attestation verify parousia-desktop-linux-x86_64 --repo ${REPO_SLUG}`}</code></pre>
+      <h3>Extension zips</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Browser</th><th>File</th></tr></thead>
+          <tbody>
+            {
+              EXTENSIONS.map((extension) => (
+                <tr>
+                  <td>{extension.label}</td>
+                  <td><a href={downloadUrl(extension.file)}>{extension.file}</a></td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Chromium loads the unzipped folder as an unpacked extension. The Firefox zip is unsigned, so
+        Firefox keeps it only until it closes. The steps are in
+        <a href={`${install}#install-by-hand`}>Installation</a>.
+      </p>
+
+      <h3>Userscript</h3>
+      <p>
+        For a script manager you already use (Violentmonkey, Tampermonkey, or ScriptCat): <a
+          href={downloadUrl(USERSCRIPT.file)}>{USERSCRIPT.file}</a
+        >. Desktop accepts a userscript only after you turn on <em>Allow userscripts</em>, because
+        that lets any web page reach it.
+      </p>
+
+      <h2 id="verify">Check what you downloaded</h2>
+      <p>
+        Every release has a <code>SHA256SUMS</code> file. Put it next to your downloads and run:
+      </p>
+      <pre><code>sha256sum --ignore-missing -c SHA256SUMS</code></pre>
+      <p>
+        On Windows, <code>(Get-FileHash file).Hash</code> in PowerShell gives the value to compare.
+        Each file also has a build provenance attestation, which shows the workflow run that built
+        it:
+      </p>
+      <pre><code>{`gh attestation verify parousia-desktop-linux-x86_64 --repo ${REPO_SLUG}`}</code></pre>
     </div>
   </div>
 </Page>

@@ -11,8 +11,8 @@ const frontmatter = {
 
 <Docs frontmatter={frontmatter}>
   <p>
-    Parousia shows what you are doing in your browser on Discord. It has four parts, and each one
-    has a single job:
+    Parousia shows what you are doing in your browser on Discord. It has four parts. New here? Start
+    with <a href={`${BASE}docs/installation/`}>Installation</a>.
   </p>
   <ul>
     <li>
@@ -20,8 +20,8 @@ const frontmatter = {
       Activity for the page, and sends what it produced to Desktop.
     </li>
     <li>
-      <strong>Parousia Desktop</strong> is a small native program. It accepts connections from
-      extensions it recognizes, on your computer only, and passes presence on.
+      <strong>Parousia Desktop</strong> is a small native program. It accepts connections only from
+      your own computer and only from extensions it recognizes, then passes presence on.
     </li>
     <li>
       <strong>A platform adapter</strong> inside Desktop turns presence into what a platform
@@ -33,8 +33,8 @@ const frontmatter = {
     </li>
   </ul>
   <p>
-    Without Desktop, the extension can still reach Discord through the app that
-    Discord-RPC-Extension installs; see <a href={`${BASE}docs/compatibility/`}>Compatibility</a>.
+    The extension can also reach Discord without Desktop, through the app that Discord-RPC-Extension
+    installs. <a href={`${BASE}docs/compatibility/`}>Compatibility</a> has the details.
   </p>
 
   <h2>Pages</h2>

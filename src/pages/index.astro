@@ -1,7 +1,7 @@
 ---
 import { BASE } from "../base";
 import Page from "../layouts/Page.astro";
-import { ACTIVITIES_REPO } from "../site";
+import { ACTIVITIES_REPO, CHROME_STORE_URL, FIREFOX_ADDON_URL } from "../site";
 
 const example = `import type { Activity, NativeActivity, Page } from "parousia";
 
@@ -24,14 +24,51 @@ export default activity;`;
   <section class="wrap hero">
     <h1>Your Rich Presence on Discord and beyond.</h1>
     <p class="lead">
-      Parousia notices what you are doing in your browser and shows it on Discord, through a small
-      native app and an extension that asks for as little as it can. Sites come from PreMiD's
-      Activities, which run unchanged, and from Activities anyone can write in TypeScript.
+      Parousia shows what you are doing in your browser on Discord. An extension reads the tab, a
+      small desktop app passes it to Discord, and there is no server, account, or analytics in
+      between. It runs almost all of PreMiD's Activities unchanged, and anyone can write new ones
+      in TypeScript.
     </p>
     <div class="actions">
-      <a class="button primary" href={`${BASE}download/`}>Download</a>
-      <a class="button" href={`${BASE}docs/`}>Read the docs</a>
+      <a class="button primary" href={CHROME_STORE_URL}>Chrome Web Store</a>
+      <a class="button primary" href={FIREFOX_ADDON_URL}>Firefox Add-ons</a>
+      <a class="button" href={`${BASE}download/#desktop`}>Get Desktop</a>
     </div>
+    <p class="hint">
+      Edge and other Chromium browsers use the Chrome Web Store listing. Parousia Desktop is for
+      Windows and Linux.
+    </p>
+  </section>
+
+  <section class="wrap section" aria-labelledby="start">
+    <h2 id="start">Get started</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>1. Add the extension</h3>
+        <p>
+          Install Parousia from the <a href={CHROME_STORE_URL}>Chrome Web Store</a> or
+          <a href={FIREFOX_ADDON_URL}>Firefox Add-ons</a>. The store keeps it up to date.
+        </p>
+      </div>
+      <div class="card">
+        <h3>2. Run Parousia Desktop</h3>
+        <p>
+          <a href={`${BASE}download/#desktop`}>Download one file</a> for Windows or Linux and open it.
+          Discord's desktop app has to be running on the same computer.
+        </p>
+      </div>
+      <div class="card">
+        <h3>3. Open a site</h3>
+        <p>
+          Browse to a supported site. Activities that read only the address and title are on
+          already; the rest ask before they read anything.
+        </p>
+      </div>
+    </div>
+    <p class="hint">
+      First time? <a href={`${BASE}docs/installation/`}>Installation</a> covers the first run,
+      including the one-time step Firefox needs.
+    </p>
   </section>
 
   <section class="wrap section" aria-labelledby="pieces">
@@ -40,30 +77,29 @@ export default activity;`;
       <div class="card">
         <h3>Browser extension</h3>
         <p>
-          Chrome, Edge, and Firefox, plus a userscript. It matches the tab against an Activity and
-          sends the result to Desktop. It needs no access to your pages unless you turn on an Activity
+          Chrome, Edge, and Firefox, plus a userscript. It matches the tab to an Activity and sends
+          the result to Desktop. It needs no access to your pages unless you turn on an Activity
           that reads them.
         </p>
       </div>
       <div class="card">
         <h3>Parousia Desktop</h3>
         <p>
-          One static program of about a megabyte for Windows and Linux. It listens on your own
+          One static program of about a megabyte, for Windows and Linux. It listens on your own
           computer only and hands presence to Discord.
         </p>
       </div>
       <div class="card">
         <h3>Activities</h3>
         <p>
-          About 1,400 from PreMiD, and Parousia's own in a repository anyone can send a pull request
-          to. Turn on the ones you want.
+          About 1,400 from PreMiD, plus Parousia's own. Anyone can add one with a pull request.
         </p>
       </div>
       <div class="card">
         <h3>Private by default</h3>
         <p>
-          Only what an Activity chooses to show leaves your browser, sites are read only where you say
-          so, and Desktop refuses any extension it does not recognize.
+          Only what an Activity chooses to show leaves your browser. Sites are read only where you
+          allow it, and Desktop refuses extensions it does not recognize.
         </p>
       </div>
     </div>
@@ -80,8 +116,8 @@ export default activity;`;
         </p>
         <p>
           The Activities repository has the type definitions, a validator, and test helpers, and
-          <code>bun run check</code> runs all of them. Try an Activity in a real extension build with
-          one environment variable.
+          <code>bun run check</code> runs all of them. One environment variable builds your Activity
+          into a real extension to try.
         </p>
         <div class="actions">
           <a class="button" href={`${BASE}docs/activities/`}>Write an Activity</a>

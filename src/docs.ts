@@ -15,7 +15,7 @@ export const DOCS: readonly Doc[] = [
   {
     slug: "installation/",
     title: "Installation",
-    summary: "Install Parousia Desktop and the browser extension or userscript.",
+    summary: "Add the extension from your browser's store, then install Parousia Desktop.",
   },
   {
     slug: "configuration/",

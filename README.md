@@ -1,6 +1,6 @@
 # Parousia website
 
-The source of [parousia.abadima.dev](https://parousia.abadima.dev): the landing page, downloads, and documentation for [Parousia](https://github.com/Abadima/RPC), built with [Astro](https://astro.build) and [Svelte 5](https://svelte.dev). It is a static site with one small interactive piece (the download page suggests the Desktop build for your system).
+The source of [parousia.abadima.dev](https://parousia.abadima.dev): the landing page, downloads, and documentation for [Parousia](https://github.com/Abadima/RPC), built with [Astro](https://astro.build) and [Svelte 5](https://svelte.dev). It is a static site with one small interactive piece (the install page suggests the Desktop build for your system).
 
 ## Commands
 

@@ -6,11 +6,11 @@ description: Browsers, platforms, PreMiD, Discord-RPC-Extension, and MAL-Sync.
 
 ## Browsers and systems
 
-|           | Supported                                                                                                    |
-| --------- | ------------------------------------------------------------------------------------------------------------ |
-| Browsers  | Chrome and Edge (one Chromium build), Firefox, and a userscript in Violentmonkey, Tampermonkey, or ScriptCat |
-| Desktop   | Windows 10/11 and Linux, on x86_64 and ARM64                                                                 |
-| Platforms | Discord. Fluxer and Stoat are planned, each as one more Desktop adapter                                      |
+|           | Supported                                                                                                                                                                                                                                                                                                    |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Browsers  | Chrome and Edge (one Chromium build, on the [Chrome Web Store](https://chromewebstore.google.com/detail/parousia/achhedhokopfgfnigkfchklhbebbhebd)), Firefox (on [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/parousia/)), and a userscript in Violentmonkey, Tampermonkey, or ScriptCat |
+| Desktop   | Windows 10/11 and Linux, on x86_64 and ARM64                                                                                                                                                                                                                                                                 |
+| Platforms | Discord. Fluxer and Stoat are planned, each as one more Desktop adapter                                                                                                                                                                                                                                      |
 
 There is no Safari build and no macOS build of Desktop. The extension sticks to standard WebExtension APIs, so a Safari version stays possible, but nothing here builds or releases one.
 

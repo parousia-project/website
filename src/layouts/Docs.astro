@@ -9,6 +9,9 @@ interface Props {
 
 const { frontmatter } = Astro.props;
 const path = Astro.url.pathname.replace(/\/?$/, "/");
+const position = DOCS.findIndex((doc) => path === `${BASE}docs/${doc.slug}`);
+const previous = position > 0 ? DOCS[position - 1] : undefined;
+const next = position >= 0 ? DOCS[position + 1] : undefined;
 ---
 
 <Page title={frontmatter.title} description={frontmatter.description}>
@@ -32,6 +35,26 @@ const path = Astro.url.pathname.replace(/\/?$/, "/");
     <article class="prose">
       <h1>{frontmatter.title}</h1>
       <slot />
+      <nav class="pager" aria-label="Previous and next page">
+        {
+          previous ? (
+            <a rel="prev" href={`${BASE}docs/${previous.slug}`}>
+              <span>Previous</span>
+              {previous.title}
+            </a>
+          ) : (
+            <span />
+          )
+        }
+        {
+          next && (
+            <a rel="next" href={`${BASE}docs/${next.slug}`}>
+              <span>Next</span>
+              {next.title}
+            </a>
+          )
+        }
+      </nav>
     </article>
   </div>
 </Page>

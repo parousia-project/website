@@ -11,8 +11,8 @@ Open the popup and expand it to the dashboard. It has four tabs: Overview, Activ
 **Activities** lists every Activity with a switch, enabled ones first and then disabled ones, each by name. An Activity page shows its own settings, if it has any. Turning on an Activity that reads pages asks your browser for the sites it needs, from the same click. If you decline, it stays off and says why.
 
 - **Search and filter.** The Filter button beside the search box offers Enabled, Disabled, Parousia Activities, and PreMiD Activities. Choices in the same group add up (Enabled and Disabled is everything) and the two groups narrow each other (Enabled and PreMiD is PreMiD's Activities that are on). The search, filters, and page stay in the address, so reloading keeps them.
-- **Both sources.** A website that Parousia and PreMiD both cover is listed once. Parousia's version runs unless you pick PreMiD's on the Activity's page, and only one of them ever runs.
-- **Enable or disable all.** The quiet "Enable or disable all…" link under the search opens a panel that applies to everything the search and filters currently match, on every page, and asks once more before doing anything. Enabling Activities that read pages makes your browser ask for access to all their sites in one prompt, which can be long. If you decline, those Activities stay off, and nothing is turned on for a site your browser did not grant.
+- **Both sources.** A website that Parousia and PreMiD both cover is listed once. Parousia's version runs unless you pick PreMiD's on the Activity's page; never both.
+- **Enable or disable all.** The "Enable or disable all…" link under the search applies to everything the search and filters match, across every page, and asks you to confirm first. Enabling Activities that read pages makes your browser ask for all their sites in one prompt, which can be long. If you decline, those Activities stay off.
 
 **Settings** has these pages:
 
