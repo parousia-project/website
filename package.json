@@ -24,7 +24,7 @@
     "svelte": "^5.57.3"
   },
   "devDependencies": {
-    "oxfmt": "^0.76.0",
+    "oxfmt": "^0.77.0",
     "oxlint": "^1.91.0",
     "typescript": "^7.0.2"
   }
