@@ -18,9 +18,45 @@ function detect({ url, title }: Page): Activity {
 
 const activity: NativeActivity = { detect };
 export default activity;`;
+
+const description =
+  "Parousia shows what you are doing in your browser on Discord: an open-source PreMiD alternative with 1,450+ Activities, no server, and no account.";
+
+// Same origin logic as the layout: the Pages workflow passes GitHub's origin as
+// --site, which can carry an http scheme.
+const origin = Astro.site ? `https://${Astro.site.host}` : "https://parousia.abadima.dev";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${origin}/#website`,
+      name: "Parousia",
+      url: `${origin}/`,
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "Parousia",
+      applicationCategory: "UtilitiesApplication",
+      operatingSystem: "Windows, Linux, Chrome, Firefox",
+      description,
+      url: `${origin}/`,
+      isAccessibleForFree: true,
+      license: "https://www.apache.org/licenses/LICENSE-2.0",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      author: {
+        "@type": "Organization",
+        name: "Parousia Project",
+        url: "https://github.com/parousia-project",
+      },
+    },
+  ],
+};
 ---
 
-<Page>
+<Page title="Discord Rich Presence for your browser" description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="wrap hero">
     <h1>Your Rich Presence on Discord and beyond.</h1>
     <p class="lead">
@@ -36,7 +72,8 @@ export default activity;`;
     </div>
     <p class="hint">
       Edge and other Chromium browsers use the Chrome Web Store listing. Parousia Desktop is for
-      Windows and Linux.
+      Windows and Linux. Switching from PreMiD, Nowly, or another tool?
+      <a href={`${BASE}compare/`}>See the comparison</a>.
     </p>
   </section>
 
@@ -92,7 +129,8 @@ export default activity;`;
       <div class="card">
         <h3>Activities</h3>
         <p>
-          About 1,400 from PreMiD, plus Parousia's own. Anyone can add one with a pull request.
+          1,450+ of them: nearly all of PreMiD's, plus Parousia's own. Anyone can add one with a
+          pull request.
         </p>
       </div>
       <div class="card">

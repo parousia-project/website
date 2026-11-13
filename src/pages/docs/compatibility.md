@@ -29,6 +29,10 @@ For anyone who prefers not to run Parousia Desktop, Parousia's extension can dri
 
 ## MAL-Sync
 
-Under evaluation. MAL-Sync keeps its own detection, and Parousia adds none of its own for it. MAL-Sync does not push presence: it registers with Discord-RPC-Extension and answers that extension's requests with a Discord presence under its own Discord Applications. So today it shows on Discord through Discord-RPC-Extension, beside whatever Parousia shows.
+Turn it on in Settings, Platforms, under Other extensions. What [MAL-Sync](https://github.com/MALSync/MALSync) recognizes on anime and manga sites then shows as the Activity in place of the site's own, and it reaches Discord through Desktop like anything else.
 
-Where it is practical, Parousia's extension will ask MAL-Sync for the active tab's presence in the same way and publish it to Desktop over the usual connection, so it becomes one presence over one Discord connection. If that needs anything invasive on either side, MAL-Sync stays as it is, running beside Parousia.
+Parousia asks MAL-Sync's background for the tab it is sharing, the same way [Discord-RPC-Extension](https://github.com/lolamtisch/Discord-RPC-Extension)'s extension does, and takes the reply as its Activity. It sends only a tab number and listens for nothing. MAL-Sync answers no matter what its own "Discord Rich Presence" setting says: it checks neither who asks nor that setting, so Parousia works with it either way. If that setting is on, MAL-Sync may show the same presence itself, which is why the switch's hint suggests turning it off.
+
+While MAL-Sync has something for the page, it takes the page over; the site's own Activity comes back when it doesn't. On a page it recognizes, it is asked again every 15 seconds, like Discord-RPC-Extension asks; elsewhere a few times after the page opens, and an idle tab is never woken.
+
+The reply is an untrusted page's reading, so it goes through the same parsing and bounds as a PreMiD Activity's. Only Discord Applications MAL-Sync itself uses are kept, a reply naming another is turned down whole, and links back to the page's own site are dropped, because a page's address stays in the browser. Parousia takes only Rich Presence from MAL-Sync, and only for the tab being shared.

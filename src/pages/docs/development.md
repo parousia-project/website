@@ -22,7 +22,7 @@ You need [Bun](https://bun.sh) 1.4 and a stable Rust toolchain. Then, in the Par
 cd browser
 bun install
 bun run typecheck && bun run lint && bun run format:check
-bun run activities:fetch   # PreMiD's and Parousia's Activities, at the commits it pins
+bun run activities:fetch   # PreMiD's and Parousia's Activities, at their newest commits
 bun run build              # dist/chromium, dist/firefox, dist/userscript
 bun test
 

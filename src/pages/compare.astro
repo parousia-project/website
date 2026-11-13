@@ -1,0 +1,263 @@
+---
+import { BASE } from "../base";
+import Page from "../layouts/Page.astro";
+import { CHROME_STORE_URL, FIREFOX_ADDON_URL, REPO, WEBSITE_REPO } from "../site";
+
+const title = "Parousia vs PreMiD and Nowly";
+const description =
+  "Parousia runs PreMiD's Activities unchanged, is open source all the way down, and works only on your computer. How it compares with PreMiD and Nowly as a Discord Rich Presence tool.";
+
+const faq = [
+  {
+    q: "Is Parousia a PreMiD alternative?",
+    a: "Yes. Parousia shows your browser activity as Discord Rich Presence and runs PreMiD's Activities unchanged: about 1,435 of the 1,451 in PreMiD's repository as of 1.2.0, plus 25 native ones. What differs underneath is licensing (Parousia is fully open source), architecture (no server and no account), and screening (every shipped Activity is checked first).",
+  },
+  {
+    q: "Do I have to give up PreMiD's Activities to use Parousia?",
+    a: "No. They are built in and run unchanged. A site that both Parousia and PreMiD cover is listed once, and you pick which one runs from the Activity's page.",
+  },
+  {
+    q: "Does Parousia need an account, a server, or an always-online connection?",
+    a: "No. The extension talks to Parousia Desktop on your computer over loopback, and Desktop talks to Discord's local socket. Discord fetches the images an Activity shows. Parousia has no server, no account, and no analytics, so nothing passes through it.",
+  },
+  {
+    q: "What platforms does Parousia support?",
+    a: "The extension runs in Chrome, Edge, and other Chromium browsers, in Firefox, and as a userscript. Parousia Desktop runs on Windows 10/11 and Linux, on x86_64 and ARM64. There is no macOS build yet; macOS is planned.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+
+<Page title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <div class="wrap section">
+    <div class="prose">
+      <h1>Parousia vs PreMiD and Nowly</h1>
+      <p>
+        Parousia, PreMiD, and Nowly show what you do in your browser as Discord Rich Presence. They
+        differ in licensing, Activity coverage, permissions, and where your data goes. Counts below
+        are from November 2026.
+      </p>
+      <p>
+        I wrote Parousia. Every claim about another project on this page links to that project's own
+        site, so you can check my summaries against the source.
+      </p>
+    </div>
+  </div>
+
+  <section class="wrap section" aria-labelledby="table">
+    <h2 id="table">The differences, side by side</h2>
+    <p class="compare-note">The same nine questions, asked of all three.</p>
+    <div class="compare-grid">
+      <article class="compare-card featured">
+        <header class="compare-head">
+          <h3>Parousia</h3>
+          <span class="compare-badge">Mine</span>
+        </header>
+        <dl class="compare-rows">
+          <div class="compare-row">
+            <dt>Source code</dt>
+            <dd>Open source, Apache-2.0 (<a href={REPO}>repo</a>)</dd>
+          </div>
+          <div class="compare-row">
+            <dt>Website Activities</dt>
+            <dd>
+              <a href={`${BASE}docs/activities/`}>1,450+</a>: nearly all of PreMiD's, plus 25 native
+            </dd>
+          </div>
+          <div class="compare-row">
+            <dt>Runs PreMiD's Activities</dt>
+            <dd>Yes, unchanged (<a href={`${BASE}docs/activities/`}>details</a>)</dd>
+          </div>
+          <div class="compare-row">
+            <dt>What you install</dt>
+            <dd>Extension and Desktop</dd>
+          </div>
+          <div class="compare-row">
+            <dt>Runs on</dt>
+            <dd>
+              <a href={CHROME_STORE_URL}>Chromium</a>,
+              <a href={FIREFOX_ADDON_URL}>Firefox</a>, userscript; Windows and Linux
+            </dd>
+          </div>
+          <div class="compare-row">
+            <dt>Price</dt>
+            <dd>Free, all of it</dd>
+          </div>
+          <div class="compare-row">
+            <dt>What leaves your computer</dt>
+            <dd>Nothing (<a href={`${BASE}docs/privacy/`}>privacy</a>)</dd>
+          </div>
+          <div class="compare-row">
+            <dt>Activity screening</dt>
+            <dd>Screened before they ship (<a href={`${BASE}docs/activities/`}>details</a>)</dd>
+          </div>
+          <div class="compare-row">
+            <dt>Beyond Discord</dt>
+            <dd>
+              <a href="https://github.com/lolamtisch/Discord-RPC-Extension">Discord-RPC-Extension</a
+              >, <a href={`${BASE}docs/compatibility/`}>MAL-Sync</a>
+            </dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="compare-card">
+        <header class="compare-head"><h3>PreMiD</h3></header>
+        <dl class="compare-rows">
+          <div class="compare-row">
+            <dt>Source code</dt>
+            <dd>
+              Activities open, extension
+              <a href="https://github.com/PreMiD/PreMiD#contributing">closed</a>
+            </dd>
+          </div>
+          <div class="compare-row">
+            <dt>Website Activities</dt>
+            <dd>1,451 in its <a href="https://github.com/PreMiD/Activities">repository</a></dd>
+          </div>
+          <div class="compare-row">
+            <dt>Runs PreMiD's Activities</dt>
+            <dd>Yes, natively</dd>
+          </div>
+          <div class="compare-row">
+            <dt>What you install</dt>
+            <dd>Extension only</dd>
+          </div>
+          <div class="compare-row">
+            <dt>Runs on</dt>
+            <dd>Chrome, Edge, Firefox, Safari; Windows, macOS, Linux</dd>
+          </div>
+          <div class="compare-row">
+            <dt>Price</dt>
+            <dd>Free; Premium optional</dd>
+          </div>
+          <div class="compare-row">
+            <dt>What leaves your computer</dt>
+            <dd>
+              <a href="https://premid.app/faq">Anonymized analytics</a>, by their own description
+            </dd>
+          </div>
+          <div class="compare-row">
+            <dt>Activity screening</dt>
+            <dd>Community-reviewed</dd>
+          </div>
+          <div class="compare-row">
+            <dt>Beyond Discord</dt>
+            <dd class="compare-none">None</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="compare-card">
+        <header class="compare-head"><h3>Nowly</h3></header>
+        <dl class="compare-rows">
+          <div class="compare-row">
+            <dt>Source code</dt>
+            <dd>
+              MIT (<a href="https://github.com/nowly-presence/nowly">nowly</a>,
+              <a href="https://github.com/nowly-presence/presences">presences</a>)
+            </dd>
+          </div>
+          <div class="compare-row">
+            <dt>Website Activities</dt>
+            <dd>About <a href="https://github.com/nowly-presence/presences">50</a></dd>
+          </div>
+          <div class="compare-row">
+            <dt>Runs PreMiD's Activities</dt>
+            <dd>No</dd>
+          </div>
+          <div class="compare-row">
+            <dt>What you install</dt>
+            <dd>Extension and desktop app</dd>
+          </div>
+          <div class="compare-row">
+            <dt>Runs on</dt>
+            <dd>Chromium, Firefox; Windows, macOS, Linux</dd>
+          </div>
+          <div class="compare-row">
+            <dt>Price</dt>
+            <dd>
+              <a href="https://nowly.me/">Free to use</a>
+            </dd>
+          </div>
+          <div class="compare-row">
+            <dt>What leaves your computer</dt>
+            <dd>
+              Activity stays local; optional account sync and statistics (<a
+                href="https://github.com/nowly-presence/nowly">their README</a
+              >)
+            </dd>
+          </div>
+          <div class="compare-row">
+            <dt>Activity screening</dt>
+            <dd>Signed scripts</dd>
+          </div>
+          <div class="compare-row">
+            <dt>Beyond Discord</dt>
+            <dd class="compare-none">None</dd>
+          </div>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="why">
+    <div class="prose">
+      <h2 id="why">What Parousia changes</h2>
+      <p>
+        Parousia implements PreMiD's <code>Presence</code> API and runs PreMiD's Activities
+        unchanged. Version 1.2.0 builds in about 1,435 of the 1,451 Activities in PreMiD's
+        repository, plus 25 native Activities, for 1,450 in total. Where Parousia and PreMiD both
+        cover a site, the catalog lists it once and you choose which one runs.
+      </p>
+      <p>
+        PreMiD's Activities are open source; its extension is not. Parousia is Apache-2.0 from the
+        extension to this site.
+      </p>
+      <p>
+        The extension talks to Parousia Desktop over loopback, and Desktop talks to Discord's local
+        socket. There is no Parousia server and no account. PreMiD's FAQ says it collects
+        anonymized analytics; Parousia collects nothing. Page access is granted per Activity, one
+        site at a time, and Desktop refuses extensions it does not recognize.
+      </p>
+      <p>
+        Every build type-checks each Activity, validates its metadata, and runs its tests. Scripts
+        that build markup from page text and services on PreMiD's DMCA list stay out. Release files
+        carry SHA256SUMS checksums and provenance attestations, verifiable with <code>gh attestation
+        verify</code>. Desktop is a single static Rust binary of about a megabyte, built for Windows
+        and Linux on x86_64 and ARM64.
+      </p>
+      <p>
+        PreMiD is the older project: it has existed since 2018, and 319,000 people use its Chrome
+        extension alone. It runs in Safari, needs nothing beyond the extension, and has an optional
+        Premium tier with extras such as cross-device sync. Nowly is free, ships a macOS desktop
+        app, and installs presences individually from a library of about 50.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="faq">
+    <div class="prose">
+      <h2 id="faq">FAQ</h2>
+      {faq.map((item) => <Fragment><h3>{item.q}</h3><p>{item.a}</p></Fragment>)}
+      <p>
+        Counts drift as repositories grow, so if something here is out of date,
+        <a href={`${WEBSITE_REPO}/issues`}>open an issue</a>.
+      </p>
+      <div class="actions">
+        <a class="button primary" href={`${BASE}download/`}>Install Parousia</a>
+        <a class="button" href={`${BASE}docs/`}>Read the docs</a>
+      </div>
+    </div>
+  </section>
+</Page>

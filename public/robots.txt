@@ -1,0 +1,6 @@
+# Cloudflare's managed robots.txt takes priority over this file.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://parousia.abadima.dev/sitemap.xml

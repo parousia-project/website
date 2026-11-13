@@ -1,0 +1,54 @@
+# Parousia
+
+> Parousia is a free, open-source Rich Presence platform: a browser extension and a small desktop app that show what you are doing in your browser on Discord. It runs PreMiD's Activities unchanged on its own implementation of PreMiD's `Presence` API, plus its own native Activities (1,450 supported in total as of Parousia 1.2.0: about 1,435 of PreMiD's and 25 of Parousia's own, with sites covered by both sources counted once). It has no server, no account, and no analytics; everything runs on your computer and talks to Discord over its official local RPC interface.
+
+Parousia is a "PreMiD alternative" in the sense that it does the same job with the same Activities, while being fully open source, local-only, and lighter. Details and comparisons: https://parousia.abadima.dev/compare/
+
+## What it is
+
+- [Overview of the four parts](https://parousia.abadima.dev/docs/): the browser extension (or userscript), Parousia Desktop, a platform adapter, and Activities.
+- Parousia Desktop is one static program of about a megabyte, written in Rust, for Windows and Linux (x86_64 and ARM64). A macOS build does not exist yet; macOS is planned.
+- The extension runs in Chrome, Edge, and other Chromium browsers, in Firefox, and as a userscript (Violentmonkey, Tampermonkey, ScriptCat).
+- Discord is the first supported platform; Fluxer and Stoat are planned, each as one more Desktop adapter.
+
+## Installing
+
+- [Install page](https://parousia.abadima.dev/download/) — store listings, Desktop builds, manual installs, checksums.
+- [Chrome Web Store listing](https://chromewebstore.google.com/detail/parousia/achhedhokopfgfnigkfchklhbebbhebd)
+- [Firefox Add-ons listing](https://addons.mozilla.org/en-US/firefox/addon/parousia/)
+- [Installation guide](https://parousia.abadima.dev/docs/installation/) — first run, including the one-time Firefox allow step.
+
+## Activities and PreMiD compatibility
+
+- Activities teach Parousia to recognize a site and describe what you are doing there. [How Activities work](https://parousia.abadima.dev/docs/activities/)
+- PreMiD's Activities run unchanged on Parousia's own implementation of PreMiD's `Presence` API. PreMiD's [Activities repository](https://github.com/PreMiD/Activities) lists 1,451 Activities (counted November 2026); Parousia 1.2.0 builds in about 1,435 of them. The rest are left out: those needing their own npm packages, those targeting PreMiD's Activity API version 2, those on PreMiD's DMCA list, those naming no Discord Application, and those whose scripts build markup from page text.
+- Parousia's own [native Activities repository](https://github.com/parousia-project/activities) adds its own Activities (25 as of 1.2.0) in a sandboxed TypeScript format: a native Activity only sees a page's URL and title (plus declared media data on sites you grant), cannot run in the page, and makes no requests.
+- Anyone can write an Activity with a pull request; [the contributing guide](https://github.com/parousia-project/activities/blob/main/.github/CONTRIBUTING.md) is the full reference.
+- Where Parousia and PreMiD both cover a site, it is listed once; you can pick which runs per site.
+
+## Integrations
+
+- Discord through its official local Rich Presence interface; each Activity can show as its own Discord Application.
+- [Discord-RPC-Extension](https://github.com/lolamtisch/Discord-RPC-Extension): Parousia's extension can drive Discord through that app's local backend (port 6969) when Parousia Desktop is not connected. [Details](https://parousia.abadima.dev/docs/compatibility/)
+- [MAL-Sync](https://github.com/MALSync/MALSync): supported, once you turn it on (Settings, Platforms, Other extensions). What MAL-Sync recognizes on anime and manga sites takes the place of the site's own Activity and reaches Discord through Parousia Desktop like any other Activity. [Details](https://parousia.abadima.dev/docs/compatibility/)
+- No account or sign-in with any service is needed anywhere in Parousia.
+
+## Privacy and security approach
+
+- No server, no account, no analytics: the project receives nothing. [Privacy documentation](https://parousia.abadima.dev/docs/privacy/)
+- The extension sends presence to Parousia Desktop over loopback (127.0.0.1:57179); Desktop passes it to Discord's local socket on the same computer. The page's own address is not part of what is sent.
+- Minimal permissions: no host permissions and no content scripts at install. Activities that read pages ask for their sites one at a time, per Activity, and "all websites" is its own switch, off by default.
+- Desktop only accepts extensions it recognizes by exact identity; unknown extensions are refused and listed, and userscripts are off by default.
+- Every Activity is screened automatically at build time and in CI: type checks, a metadata validator, tests, and rules such as no `eval` or dynamic `import()`, https-only image URLs, and length-capped text. Scripts that build markup from page text and Activities on PreMiD's DMCA list are excluded.
+- Release files have SHA256SUMS checksums and build provenance attestations (`gh attestation verify`). [Development and release docs](https://parousia.abadima.dev/docs/development/)
+
+## Configuration
+
+- [Configuration guide](https://parousia.abadima.dev/docs/configuration/) — the extension's dashboard, Desktop's commands, and its config file.
+
+## Project links
+
+- [Parousia repository](https://github.com/Abadima/RPC) — the extension, Desktop, and design documents. License: Apache-2.0.
+- [Activities repository](https://github.com/parousia-project/activities) — native Activities and their tooling.
+- [Website repository](https://github.com/parousia-project/website) — this site.
+- [Comparison with PreMiD and Nowly](https://parousia.abadima.dev/compare/)

@@ -19,14 +19,16 @@ bun test
 
 ## Layout
 
-| Path            | What it is                                                                                            |
-| --------------- | ----------------------------------------------------------------------------------------------------- |
-| `src/pages/`    | Pages. `docs/*.md` are the documentation, written in Markdown and wrapped by `src/layouts/Docs.astro` |
-| `src/docs.ts`   | The documentation pages in sidebar order                                                              |
-| `src/site.ts`   | Repository links and release file names. Change a link or a file name here                            |
-| `src/detect.ts` | Picks the Desktop build to suggest, with tests                                                        |
-| `public/pwa/`   | The standalone `/pwa/` page: static, installable, cache-first service worker                          |
-| `public/CNAME`  | The custom domain, `parousia.abadima.dev`                                                             |
+| Path                | What it is                                                                                            |
+| ------------------- | ----------------------------------------------------------------------------------------------------- |
+| `src/pages/`        | Pages. `docs/*.md` are the documentation, written in Markdown and wrapped by `src/layouts/Docs.astro` |
+| `src/docs.ts`       | The documentation pages in sidebar order                                                              |
+| `src/site.ts`       | Repository links and release file names. Change a link or a file name here                            |
+| `src/detect.ts`     | Picks the Desktop build to suggest, with tests                                                        |
+| `public/llms.txt`   | The AI-readable project summary. Keep its claims and numbers accurate when the project changes        |
+| `public/robots.txt` | Points crawlers at the sitemap; Cloudflare's managed robots.txt takes precedence while enabled        |
+| `public/pwa/`       | The standalone `/pwa/` page: static, installable, cache-first service worker                          |
+| `public/CNAME`      | The custom domain, `parousia.abadima.dev`                                                             |
 
 The download links go to `releases/latest/download/<file>` in the Parousia repository. Release file names carry no version, so they stay valid. If a release stops publishing a file, update `src/site.ts` and the tables in `src/pages/docs/development.md`.
 

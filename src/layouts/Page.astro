@@ -14,12 +14,16 @@ const {
 } = Astro.props;
 const fullTitle = title ? `${title} · Parousia` : "Parousia";
 const path = Astro.url.pathname.replace(/\/?$/, "/");
-const canonical = Astro.site ? new URL(path, Astro.site).href : undefined;
-const image = Astro.site ? new URL(`${BASE}pwa/icons/icon-512.png`, Astro.site).href : undefined;
+// The Pages workflow passes GitHub's origin as --site, and the Pages API can
+// report a custom domain with an http scheme; every URL the site publishes is https.
+const site = Astro.site ? new URL(Astro.site.href.replace(/^http:/, "https:")) : undefined;
+const canonical = site ? new URL(path, site).href : undefined;
+const image = site ? new URL(`${BASE}pwa/icons/icon-512.png`, site).href : undefined;
 
 const nav = [
   { href: `${BASE}download/`, label: "Install" },
   { href: `${BASE}docs/`, label: "Docs" },
+  { href: `${BASE}compare/`, label: "Compare" },
   { href: REPO, label: "GitHub" },
 ];
 const current = (href: string): "page" | undefined =>
@@ -47,6 +51,9 @@ const current = (href: string): "page" | undefined =>
     {canonical && <meta property="og:url" content={canonical} />}
     {image && <meta property="og:image" content={image} />}
     <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {image && <meta name="twitter:image" content={image} />}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

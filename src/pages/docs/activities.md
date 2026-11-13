@@ -9,9 +9,9 @@ An Activity teaches Parousia to recognize a site and describe what you are doing
 ## Where they come from
 
 - **Native Activities** are TypeScript, in [parousia-project/activities](https://github.com/parousia-project/activities). Each is a folder, `websites/<letter>/<Name>/`, filed like PreMiD's.
-- **PreMiD's Activities** run unchanged on Parousia's own implementation of PreMiD's `Presence` API. That is 1,410 of the 1,417 at the commit Parousia pins. The rest need their own npm packages, target PreMiD's API version 2, or are on PreMiD's DMCA list.
+- **PreMiD's Activities** run unchanged on Parousia's own implementation of PreMiD's `Presence` API. Parousia 1.2.0 builds in about 1,435 of the 1,451 in [PreMiD's repository](https://github.com/PreMiD/Activities) (counted November 2026). The rest need their own npm packages, target PreMiD's Activity API version 2, are on PreMiD's DMCA list, name no Discord Application, or build markup from page text.
 
-The extension is built with both sets included, each pinned to a commit, and nothing is downloaded while it runs. A site both sources cover is listed once; the native Activity runs until you pick PreMiD's on the Activity's page.
+The extension is built with both sets included, at the newest commits the build fetched, and nothing is downloaded while it runs. A site both sources cover is listed once; the native Activity runs until you pick PreMiD's on the Activity's page.
 
 ## What a native Activity can do
 
